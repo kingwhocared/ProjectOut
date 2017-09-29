@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ProjectOut</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="server">localhost</string>
+    <string name="title_section1">Events</string>
+    <string name="title_section2">Places</string>
+    <string name="title_section3">Chats</string>
+</resources>
