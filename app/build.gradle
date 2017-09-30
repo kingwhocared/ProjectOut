@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -24,9 +25,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    testCompile 'junit:junit:4.12'
     compile files('libs/gson-2.2.4.jar')
     compile files('libs/smack-android-extensions-4.1.0-rc4.jar')
     compile files('libs/smack-core-4.1.0-rc4.jar')
@@ -34,4 +32,9 @@ dependencies {
     compile files('libs/smack-im-4.1.0-rc4.jar')
     compile files('libs/smack-resolver-dnsjava-4.1.0-rc4.jar')
     compile files('libs/smack-tcp-4.1.0-rc4.jar')
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:support-vector-drawable:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
 }

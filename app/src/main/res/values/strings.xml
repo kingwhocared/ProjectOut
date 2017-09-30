@@ -4,7 +4,17 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="hello_world">Hello world!</string>
     <string name="server">localhost</string>
-    <string name="title_section1">Events</string>
-    <string name="title_section2">Places</string>
-    <string name="title_section3">Chats</string>
+    <string name="title_section1mainmenu">Places</string>
+    <string name="title_section2mainmenu">Events</string>
+    <string name="title_section3mainmenu">Chats</string>
+
+    <string name="title_section1privatechat">Private chat with..</string>
+    <string name="title_section2privatechat">User info</string>
+    <string name="privateChatBarTitle">Private Chat</string>
+
+    <string name="title_activity_private_chat">PrivateChatActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
 </resources>

@@ -1,10 +1,10 @@
 package com.out;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -19,8 +19,12 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
 
+import com.out.PrivateChatScreen.PrivateChatActivity;
 import com.out.PrivateChatSelectionScreen.PrivateChatSelectionScreen;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -47,15 +51,15 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbaractivitymain);
         setSupportActionBar(toolbar);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager = (ViewPager) findViewById(R.id.pageractivitymain);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsactivitymain);
         tabLayout.setupWithViewPager(mViewPager);
 
     }
@@ -68,6 +72,9 @@ public class MainActivity extends AppCompatActivity  {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent intent = new Intent(this, PrivateChatActivity.class);
+        startActivity(intent);
 
         int id = item.getItemId();
         if (id == R.id.action_settings) {
@@ -85,13 +92,10 @@ public class MainActivity extends AppCompatActivity  {
 
         @Override
         public Fragment getItem(int position) {
-
             switch (position) {
-                case 0:
-                    PrivateChatSelectionScreen privateChatSelectionScreen = new PrivateChatSelectionScreen();
-
-                    return privateChatSelectionScreen;
                 case 1:
+                    return new PrivateChatSelectionScreen();
+                case 2:
                     return new PrivateChatSelectionScreen();
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
@@ -109,11 +113,11 @@ public class MainActivity extends AppCompatActivity  {
             Locale l = Locale.getDefault();
             switch (position) {
                 case 0:
-                    return getString(R.string.title_section1).toUpperCase(l);
+                    return getString(R.string.title_section1mainmenu).toUpperCase(l);
                 case 1:
-                    return getString(R.string.title_section2).toUpperCase(l);
+                    return getString(R.string.title_section2mainmenu).toUpperCase(l);
                 case 2:
-                    return getString(R.string.title_section3).toUpperCase(l);
+                    return getString(R.string.title_section3mainmenu).toUpperCase(l);
             }
             return null;
         }
@@ -148,5 +152,12 @@ public class MainActivity extends AppCompatActivity  {
         super.onDestroy();
     }
 
+    public static final String EXTRA_DATA = "";
 
+    public void onButtonClick(View view) {
+        Intent intent = new Intent(MainActivity.this, PrivateChatActivity.class);
+        String userNameToChatWith = ((TextView) (view.findViewById(R.id.contact_selectable_name))).getText().toString();
+        intent.putExtra(EXTRA_DATA, userNameToChatWith);
+        startActivity(intent);
+    }
 }
