@@ -37,7 +37,6 @@ public class Event extends Fragment implements OnClickListener {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.chat_layout, container, false);
         random = new Random();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Chat with dogo");
         msg_edittext = (EditText) view.findViewById(R.id.messageEditText);
         msgListView = (ListView) view.findViewById(R.id.msgListView);
         ImageButton sendButton = (ImageButton) view

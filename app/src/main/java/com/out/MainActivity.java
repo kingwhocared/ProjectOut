@@ -21,6 +21,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.out.EventChatScreen.EventActivity;
+import com.out.EventSelectionScreen.EventSelectable;
+import com.out.EventSelectionScreen.EventSelectionScreen;
 import com.out.PrivateChatScreen.PrivateChatActivity;
 import com.out.PrivateChatSelectionScreen.PrivateChatSelectionScreen;
 
@@ -94,7 +97,7 @@ public class MainActivity extends AppCompatActivity  {
         public Fragment getItem(int position) {
             switch (position) {
                 case 1:
-                    return new PrivateChatSelectionScreen();
+                    return new EventSelectionScreen();
                 case 2:
                     return new PrivateChatSelectionScreen();
                 default:
@@ -154,10 +157,25 @@ public class MainActivity extends AppCompatActivity  {
 
     public static final String EXTRA_DATA = "";
 
-    public void onButtonClick(View view) {
-        Intent intent = new Intent(MainActivity.this, PrivateChatActivity.class);
-        String userNameToChatWith = ((TextView) (view.findViewById(R.id.contact_selectable_name))).getText().toString();
-        intent.putExtra(EXTRA_DATA, userNameToChatWith);
+    public void onChatSelected(View view) {
+        String selected;
+        Class newActivity = null;
+        selected = ((TextView) (view.findViewById(R.id.contact_selectable_name))).getText().toString();
+        newActivity = PrivateChatActivity.class;
+
+        Intent intent = new Intent(MainActivity.this, newActivity);
+        intent.putExtra(EXTRA_DATA, selected);
+        startActivity(intent);
+    }
+
+    public void onEventSelected(View view) {
+        String selected;
+        Class newActivity = null;
+        selected = ((TextView) (view.findViewById(R.id.event_selectable_name))).getText().toString();
+        newActivity = EventActivity.class;
+
+        Intent intent = new Intent(MainActivity.this, newActivity);
+        intent.putExtra(EXTRA_DATA, selected);
         startActivity(intent);
     }
 }

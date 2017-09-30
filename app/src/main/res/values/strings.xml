@@ -12,6 +12,10 @@
     <string name="title_section2privatechat">User info</string>
     <string name="privateChatBarTitle">Private Chat</string>
 
+    <string name="title_section1event">Event</string>
+    <string name="title_section2event">Event info</string>
+    <string name="eventBarTitle">Event</string>
+
     <string name="title_activity_private_chat">PrivateChatActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>

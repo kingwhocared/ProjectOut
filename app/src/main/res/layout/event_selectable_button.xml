@@ -5,12 +5,13 @@
     android:layout_height="60dp"
     android:background="@android:drawable/btn_default"
     android:clickable="true"
-    android:onClick="onChatSelected"
-    android:id="@+id/chat_selectable"
+    android:onClick="onEventSelected"
+    android:id="@+id/event_selectable"
     >
 
+
     <ImageView
-        android:id="@+id/contact_selectable_picture"
+        android:id="@+id/event_selectable_picture"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_alignParentLeft="true"
@@ -18,7 +19,7 @@
         android:src="@drawable/dogo"></ImageView>
 
     <TextView
-        android:id="@+id/contact_selectable_name"
+        android:id="@+id/event_selectable_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"

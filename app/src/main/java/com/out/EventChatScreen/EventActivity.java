@@ -1,10 +1,12 @@
-package com.out.PrivateChatScreen;
+package com.out.EventChatScreen;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,41 +14,38 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 
 import com.out.MainActivity;
-import com.out.PrivateChatSelectionScreen.PrivateChatSelectionScreen;
+import com.out.PrivateChatScreen.Chat;
 import com.out.R;
 
 import java.util.Locale;
 
-public class PrivateChatActivity extends AppCompatActivity {
+public class EventActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
-    private static final String TAG = "PrivateChatActivity";
-    PrivateChatActivity.SectionsPagerAdapter mSectionsPagerAdapter;
+    private static final String TAG = "EventChatActivity";
+    EventActivity.SectionsPagerAdapter mSectionsPagerAdapter;
     ViewPager mViewPager;
-    private String userNameToChatWith;
+    private String eventName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_private_chat);
+        setContentView(R.layout.activity_event);
 
         Intent intent = getIntent();
-        this.userNameToChatWith = intent.getStringExtra(MainActivity.EXTRA_DATA);
+        this.eventName = intent.getStringExtra(MainActivity.EXTRA_DATA);
 
-        mSectionsPagerAdapter = new PrivateChatActivity.SectionsPagerAdapter(getSupportFragmentManager(), userNameToChatWith);
+        mSectionsPagerAdapter = new EventActivity.SectionsPagerAdapter(getSupportFragmentManager(), eventName);
 
-        mViewPager = (ViewPager) findViewById(R.id.pageractivityprivatechat);
+        mViewPager = (ViewPager) findViewById(R.id.pageractivityevent);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsactivityprivatechat);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsactivityevent);
         tabLayout.setupWithViewPager(mViewPager);
 
-        getSupportActionBar().setTitle(R.string.privateChatBarTitle);
+        getSupportActionBar().setTitle(R.string.eventBarTitle);
 
     }
 
@@ -66,22 +65,22 @@ public class PrivateChatActivity extends AppCompatActivity {
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
-        private String userNameToChatWith;
+        private String eventName;
 
-        public SectionsPagerAdapter(FragmentManager fm, String userNameToChatWith) {
+        public SectionsPagerAdapter(FragmentManager fm, String eventName) {
             super(fm);
-            this.userNameToChatWith = userNameToChatWith;
+            this.eventName = eventName;
         }
 
         @Override
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new Chat();
+                    return new Event();
                 //case 1:
-                //    return new EventSelectionScreen();
+                //    return new ();
                 default:
-                    return PrivateChatActivity.PlaceholderFragment.newInstance(position + 1);
+                    return EventActivity.PlaceholderFragment.newInstance(position + 1);
             }
         }
 
@@ -96,9 +95,9 @@ public class PrivateChatActivity extends AppCompatActivity {
             Locale l = Locale.getDefault();
             switch (position) {
                 case 0:
-                    return this.userNameToChatWith;
+                    return this.eventName;
                 case 1:
-                    return getString(R.string.title_section2privatechat).toUpperCase(l);
+                    return getString(R.string.title_section2event).toUpperCase(l);
             }
             return null;
         }
@@ -108,8 +107,8 @@ public class PrivateChatActivity extends AppCompatActivity {
 
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-        public static PrivateChatActivity.PlaceholderFragment newInstance(int sectionNumber) {
-            PrivateChatActivity.PlaceholderFragment fragment = new PrivateChatActivity.PlaceholderFragment();
+        public static EventActivity.PlaceholderFragment newInstance(int sectionNumber) {
+            EventActivity.PlaceholderFragment fragment = new EventActivity.PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);

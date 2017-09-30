@@ -32,6 +32,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.out.PrivateChatScreen.PrivateChatActivity"></activity>
+        <activity android:name="com.out.EventChatScreen.EventActivity"></activity>
     </application>
 
 </manifest>
