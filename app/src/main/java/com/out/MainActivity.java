@@ -34,28 +34,14 @@ public class MainActivity extends AppCompatActivity  {
     private static final String TAG = "MainActivity";
     SectionsPagerAdapter mSectionsPagerAdapter;
     ViewPager mViewPager;
-    private final ServiceConnection mConnection = new ServiceConnection() {
-
-        @SuppressWarnings("unchecked")
-        @Override
-        public void onServiceConnected(final ComponentName name,
-                                       final IBinder service) {
-            Log.d(TAG, "onServiceConnected");
-        }
-
-        @Override
-        public void onServiceDisconnected(final ComponentName name) {
-            Log.d(TAG, "onServiceDisconnected");
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbaractivitymain);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbaractivitymain);
+        //setSupportActionBar(toolbar);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -169,6 +155,12 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void onEventSelected(View view) {
+        if (true) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            //Bundle bundle = new Bundle();
+            //bundle.putSerializable(EXTRA_USER_ID, FirebaseInstanceId.getInstance().getToken());
+            startActivity(intent);
+        }
         String selected;
         Class newActivity = null;
         selected = ((TextView) (view.findViewById(R.id.event_selectable_name))).getText().toString();
