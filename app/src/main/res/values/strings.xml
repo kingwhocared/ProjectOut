@@ -16,6 +16,8 @@
     <string name="title_section2event">Event info</string>
     <string name="eventBarTitle">Event</string>
 
+    <string name="default_notification_channel_id">default_notification_channel_id</string>
+
     <string name="title_activity_private_chat">PrivateChatActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>

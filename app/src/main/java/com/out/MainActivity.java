@@ -2,6 +2,7 @@ package com.out;
 
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -19,27 +20,33 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.out.EventChatScreen.EventActivity;
 import com.out.EventSelectionScreen.EventSelectable;
 import com.out.EventSelectionScreen.EventSelectionScreen;
 import com.out.PrivateChatScreen.PrivateChatActivity;
 import com.out.PrivateChatSelectionScreen.PrivateChatSelectionScreen;
+import com.out.TestFragment.TestStuffFragment;
 
 import org.w3c.dom.Text;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
+
+
 
     private static final String TAG = "MainActivity";
     SectionsPagerAdapter mSectionsPagerAdapter;
     ViewPager mViewPager;
-
+    String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        userId = FirebaseInstanceId.getInstance().getToken();
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbaractivitymain);
         //setSupportActionBar(toolbar);
 
@@ -73,6 +80,8 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
+
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -82,6 +91,8 @@ public class MainActivity extends AppCompatActivity  {
         @Override
         public Fragment getItem(int position) {
             switch (position) {
+                case 0:
+                    return new TestStuffFragment();
                 case 1:
                     return new EventSelectionScreen();
                 case 2:
@@ -169,5 +180,10 @@ public class MainActivity extends AppCompatActivity  {
         Intent intent = new Intent(MainActivity.this, newActivity);
         intent.putExtra(EXTRA_DATA, selected);
         startActivity(intent);
+    }
+
+    public void onTestButtonClick(View view) {
+        TextInputEditText t1 = (TextInputEditText) view.getRootView().findViewById(R.id.testStuffFragmentT1);
+        t1.setText(FirebaseInstanceId.getInstance().getToken());
     }
 }

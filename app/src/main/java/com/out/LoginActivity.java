@@ -169,14 +169,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         }
     }
 
-    public static final String EXTRA_USER_ID = "";
-
     public void passToMainActivityAfterLogin(View view) {
         String firebaseUserId = FirebaseInstanceId.getInstance().getToken();
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(EXTRA_USER_ID, FirebaseInstanceId.getInstance().getToken());
         startActivity(intent);
-
     }
 }
