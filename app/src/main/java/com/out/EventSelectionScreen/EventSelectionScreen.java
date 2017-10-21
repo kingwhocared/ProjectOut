@@ -37,10 +37,6 @@ public class EventSelectionScreen extends Fragment {
         this.privateChatsList.add(new EventSelectable("The wanted unwanted", null));
         this.privateChatsList.add(new EventSelectable("Bob's furious seven", null));
         this.privateChatsList.add(new EventSelectable("Rick and morty club", null));
-        this.privateChatsList.add(new EventSelectable("poop1", null));
-        this.privateChatsList.add(new EventSelectable("poop2", null));
-        this.privateChatsList.add(new EventSelectable("poop3", null));
-        this.privateChatsList.add(new EventSelectable("poop4", null));
         View view = inflater.inflate(R.layout.private_chat_selection, container, false);
         contactSelectableListView = (ListView) view.findViewById(R.id.privateChatsListView);
 

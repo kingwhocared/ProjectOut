@@ -8,7 +8,6 @@ package com.out.PrivateChatScreen;
         import java.util.Random;
         import android.os.Bundle;
         import android.support.v4.app.Fragment;
-        import android.support.v7.app.AppCompatActivity;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.View.OnClickListener;
@@ -34,7 +33,7 @@ public class Chat extends Fragment implements OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.chat_layout, container, false);
+        View view = inflater.inflate(R.layout.private_chat_layout, container, false);
         random = new Random();
         msg_edittext = (EditText) view.findViewById(R.id.messageEditText);
         msgListView = (ListView) view.findViewById(R.id.msgListView);

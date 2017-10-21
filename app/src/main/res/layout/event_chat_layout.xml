@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="נפגש בדיזינגוף?"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+            />
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="2dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <CheckBox
+                    android:id="@+id/declineVoteCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:onClick="onDeclineVote"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:text="No." />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/voteStatus"
+                android:text="4/9"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:padding="10dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <CheckBox
+                    android:id="@+id/acceptVoteCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:onClick="onAcceptVote"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:text="Yes!"/>
+            </LinearLayout>
+
+
+
+        </android.support.v7.widget.LinearLayoutCompat>
+        <ListView
+            android:id="@+id/msgListView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/form"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:paddingBottom="10dp"
+            android:text="@string/hello_world" />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <LinearLayout
+        android:id="@+id/form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="#91f1f1f1"
+        android:orientation="horizontal"
+        android:paddingBottom="2dp"
+        android:gravity="bottom"
+        android:layout_gravity="bottom">
+
+
+        <EditText
+            android:id="@+id/messageEditText"
+            android:layout_width="252dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/button1"
+            android:layout_toLeftOf="@+id/sendMessageButton"
+            android:layout_weight="0.72"
+            android:ems="10"
+            android:maxHeight="80dp"/>
+
+        <ImageButton
+            android:id="@+id/sendMessageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/send_button"
+            android:text="d" />
+    </LinearLayout>
+
+</RelativeLayout>

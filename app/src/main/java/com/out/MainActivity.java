@@ -27,6 +27,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.out.EventChatScreen.EventActivity;
 import com.out.EventSelectionScreen.EventSelectable;
 import com.out.EventSelectionScreen.EventSelectionScreen;
+import com.out.MessagesContentView.ChatMessage;
 import com.out.PrivateChatScreen.PrivateChatActivity;
 import com.out.PrivateChatSelectionScreen.PrivateChatSelectionScreen;
 import com.out.TestFragment.TestStuffFragment;
@@ -183,7 +184,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onTestButtonClick(View view) {
-        TextInputEditText t1 = (TextInputEditText) view.getRootView().findViewById(R.id.testStuffFragmentT1);
-        t1.setText(FirebaseInstanceId.getInstance().getToken());
     }
+
 }

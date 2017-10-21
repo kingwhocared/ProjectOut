@@ -13,11 +13,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.out.MainActivity;
 import com.out.PrivateChatScreen.Chat;
 import com.out.R;
+
+import org.w3c.dom.Text;
 
 import java.util.Locale;
 
@@ -28,6 +31,8 @@ public class EventActivity extends AppCompatActivity {
     EventActivity.SectionsPagerAdapter mSectionsPagerAdapter;
     ViewPager mViewPager;
     private String eventName;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +81,9 @@ public class EventActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new Event();
-                //case 1:
-                //    return new ();
+                    return Event.getInstance();
+                case 1:
+                    return new EventInfo();
                 default:
                     return EventActivity.PlaceholderFragment.newInstance(position + 1);
             }
@@ -129,5 +134,21 @@ public class EventActivity extends AppCompatActivity {
 
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+
+    public void onAcceptVote(View view) {
+        ((CheckBox) (findViewById(R.id.declineVoteCheckBox))).setChecked(false);
+        setVoteStatus("5/9");
+    }
+
+    public void onDeclineVote(View view) {
+        ((CheckBox) (findViewById(R.id.acceptVoteCheckBox))).setChecked(false);
+        setVoteStatus("3/9");
+
+    }
+
+    private void setVoteStatus(String str) {
+        ((TextView) (findViewById(R.id.voteStatus))).setText(str);
     }
 }

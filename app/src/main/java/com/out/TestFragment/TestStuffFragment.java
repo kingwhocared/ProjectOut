@@ -45,6 +45,5 @@ public class TestStuffFragment extends Fragment implements MessageSubscriber {
 
     @Override
     public void recieve(Object msg) {
-        ((TextInputEditText) view.findViewById(R.id.testStuffFragmentT2)).setText((String) msg);
     }
 }
