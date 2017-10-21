@@ -19,6 +19,43 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
+                android:text="Location:"
+                android:textSize="25dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/eventlocationView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:text="info"
+                android:textSize="25dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:id="@+id/locationVote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Vote"
+                android:textSize="15dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
                 android:text="Date:"
                 android:textSize="25dp"
                 android:layout_centerVertical="true"
@@ -26,17 +63,18 @@
                 android:layout_alignParentStart="true" />
 
             <TextView
-                android:id="@+id/dateView"
+                android:id="@+id/eventdateView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="5dp"
-                android:text="18/09/96"
+                android:text="info"
                 android:textSize="25dp"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
 
             <Button
+                android:id="@+id/dateVote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Vote"
@@ -63,17 +101,18 @@
                 android:layout_alignParentStart="true" />
 
             <TextView
-                android:id="@+id/timeView"
+                android:id="@+id/eventtimeView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="5dp"
-                android:text="09:00pm"
+                android:text="info"
                 android:textSize="25dp"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
 
             <Button
+                android:id="@+id/timeVote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -85,43 +124,20 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="My orders:\n1 x BBB Burger - $12\n1 x Cola - $2\n    Total: $14.4 (inc. tip)"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="Location:"
-                android:textSize="25dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-
-            <TextView
-                android:id="@+id/locationView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="5dp"
-                android:text="Hertzel st. 34"
-                android:textSize="25dp"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Vote"
-                android:textSize="15dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-
-        </RelativeLayout>
-
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="250dp"
+            android:layout_height="210dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/gmaps_sim"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
 </RelativeLayout>

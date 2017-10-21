@@ -83,7 +83,7 @@ public class EventActivity extends AppCompatActivity {
                 case 0:
                     return Event.getInstance();
                 case 1:
-                    return new EventInfo();
+                    return EventInfo.getInstance();
                 default:
                     return EventActivity.PlaceholderFragment.newInstance(position + 1);
             }
@@ -150,5 +150,8 @@ public class EventActivity extends AppCompatActivity {
 
     private void setVoteStatus(String str) {
         ((TextView) (findViewById(R.id.voteStatus))).setText(str);
+    }
+
+    private void onLocationNewVote(View view) {
     }
 }
