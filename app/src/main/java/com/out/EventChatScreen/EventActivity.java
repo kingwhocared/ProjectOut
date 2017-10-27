@@ -1,5 +1,7 @@
 package com.out.EventChatScreen;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -14,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.out.MainActivity;
@@ -31,7 +34,7 @@ public class EventActivity extends AppCompatActivity {
     EventActivity.SectionsPagerAdapter mSectionsPagerAdapter;
     ViewPager mViewPager;
     private String eventName;
-
+    EventInfo eventInfo;
 
 
     @Override
@@ -83,7 +86,8 @@ public class EventActivity extends AppCompatActivity {
                 case 0:
                     return Event.getInstance();
                 case 1:
-                    return EventInfo.getInstance();
+                    eventInfo = EventInfo.getInstance();
+                    return eventInfo;
                 default:
                     return EventActivity.PlaceholderFragment.newInstance(position + 1);
             }
@@ -152,6 +156,58 @@ public class EventActivity extends AppCompatActivity {
         ((TextView) (findViewById(R.id.voteStatus))).setText(str);
     }
 
-    private void onLocationNewVote(View view) {
+    public void onLocationNewVote(View view) {
+        newVoteInputDialog(EventInfoType.EVENT_LOCATION);
+    }
+
+    public void onDateNewVote(View view) {
+        newVoteInputDialog(EventInfoType.EVENT_DATE);
+    }
+
+    public void onTimeNewVote(View view) {
+        newVoteInputDialog(EventInfoType.EVENT_TIME);
+    }
+
+    public void onNewVoteEntered(EventInfoType eventInfoType, String newVoteOffer) {
+        switch (eventInfoType){
+            case EVENT_DATE:
+                ((TextView) eventInfo.getView().findViewById(R.id.eventdateView)).setText(newVoteOffer);
+                break;
+            case EVENT_LOCATION:
+                break;
+            case EVENT_TIME:
+                break;
+        }
+    }
+
+    static String m_Text = null;
+    private void newVoteInputDialog(final EventInfoType eventInfoType) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Title");
+        // I'm using fragment here so I'm using getView() to provide ViewGroup
+        // but you can provide here any other instance of ViewGroup from your Fragment / Activity
+        View viewInflated = LayoutInflater.from(this).inflate(R.layout.new_vote_input_dialog, (ViewGroup) this.findViewById(android.R.id.content), false);
+        // Set up the input
+        final EditText input = (EditText) viewInflated.findViewById(R.id.input);
+        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        builder.setView(viewInflated);
+
+        // Set up the buttons
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                m_Text = input.getText().toString();
+                onNewVoteEntered(eventInfoType, m_Text);
+            }
+        });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
     }
 }
