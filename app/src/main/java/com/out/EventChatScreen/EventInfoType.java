@@ -7,5 +7,6 @@ package com.out.EventChatScreen;
 public enum EventInfoType {
     EVENT_LOCATION,
     EVENT_DATE,
-    EVENT_TIME
+    EVENT_TIME,
+    EVENT_NULL_FOR_TESTING
 }

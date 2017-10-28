@@ -10,11 +10,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,6 +29,7 @@ import com.out.R;
 import org.w3c.dom.Text;
 
 import java.util.Locale;
+
 
 public class EventActivity extends AppCompatActivity {
 
@@ -140,15 +144,38 @@ public class EventActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
+    private static String lastVoteOffer = "";
+    private static EventInfoType lastVoteInfoType = EventInfoType.EVENT_NULL_FOR_TESTING;
 
     public void onAcceptVote(View view) {
         ((CheckBox) (findViewById(R.id.declineVoteCheckBox))).setChecked(false);
-        setVoteStatus("5/9");
+
+        ((CheckBox) (findViewById(R.id.declineVoteCheckBox))).setClickable(false);
+        ((CheckBox) (findViewById(R.id.acceptVoteCheckBox))).setClickable(false);
+
+        setVoteStatus("5/9, accepted!");
+
+        switch (lastVoteInfoType){
+            case EVENT_DATE:
+                ((TextView) eventInfo.getView().findViewById(R.id.eventdateView)).setText(lastVoteOffer);
+                break;
+            case EVENT_LOCATION:
+                ((TextView) eventInfo.getView().findViewById(R.id.eventlocationView)).setText(lastVoteOffer);
+                break;
+            case EVENT_TIME:
+                ((TextView) eventInfo.getView().findViewById(R.id.eventtimeView)).setText(lastVoteOffer);
+                break;
+        }
+
     }
 
     public void onDeclineVote(View view) {
         ((CheckBox) (findViewById(R.id.acceptVoteCheckBox))).setChecked(false);
-        setVoteStatus("3/9");
+        setVoteStatus("3/9, declined!");
+
+        ((CheckBox) (findViewById(R.id.declineVoteCheckBox))).setClickable(false);
+        ((CheckBox) (findViewById(R.id.acceptVoteCheckBox))).setClickable(false);
+
 
     }
 
@@ -169,24 +196,31 @@ public class EventActivity extends AppCompatActivity {
     }
 
     public void onNewVoteEntered(EventInfoType eventInfoType, String newVoteOffer) {
-        switch (eventInfoType){
-            case EVENT_DATE:
-                ((TextView) eventInfo.getView().findViewById(R.id.eventdateView)).setText(newVoteOffer);
-                break;
-            case EVENT_LOCATION:
-                break;
-            case EVENT_TIME:
-                break;
-        }
+        readyNewVote(eventInfoType, newVoteOffer);
     }
 
     static String m_Text = null;
     private void newVoteInputDialog(final EventInfoType eventInfoType) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Title");
+
+        String voteOfferTitle = "";
+        switch (eventInfoType){
+            case EVENT_DATE:
+                voteOfferTitle = "New event date: ";
+                break;
+            case EVENT_LOCATION:
+                voteOfferTitle = "New event location: ";
+                break;
+            case EVENT_TIME:
+                voteOfferTitle = "New event time: ";
+                break;
+        }
+        builder.setTitle(voteOfferTitle);
         // I'm using fragment here so I'm using getView() to provide ViewGroup
         // but you can provide here any other instance of ViewGroup from your Fragment / Activity
         View viewInflated = LayoutInflater.from(this).inflate(R.layout.new_vote_input_dialog, (ViewGroup) this.findViewById(android.R.id.content), false);
+
+
         // Set up the input
         final EditText input = (EditText) viewInflated.findViewById(R.id.input);
         // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
@@ -210,4 +244,33 @@ public class EventActivity extends AppCompatActivity {
 
         builder.show();
     }
+
+
+    public void readyNewVote(EventInfoType eventInfoType, String newVoteOffer) {
+        ( (findViewById(R.id.voteStatusBar))).setVisibility(View.VISIBLE);
+        
+        ((CheckBox) (findViewById(R.id.declineVoteCheckBox))).setClickable(true);
+        ((CheckBox) (findViewById(R.id.acceptVoteCheckBox))).setClickable(true);
+
+        String votePrefix = "";
+        switch (eventInfoType){
+            case EVENT_DATE:
+                votePrefix = "New event date: ";
+                break;
+            case EVENT_LOCATION:
+                votePrefix = "New event location: ";
+                break;
+            case EVENT_TIME:
+                votePrefix = "New event time: ";
+                break;
+        }
+        lastVoteOffer = newVoteOffer;
+        lastVoteInfoType = eventInfoType;
+
+        ( (TextView) findViewById(R.id.voteTextDesc)).setText(votePrefix + newVoteOffer);
+        ( (CheckBox) findViewById(R.id.declineVoteCheckBox)).setChecked(false);
+        ( (CheckBox) findViewById(R.id.acceptVoteCheckBox)).setChecked(false);
+        ( (TextView) findViewById(R.id.voteStatus)).setText("1/9 remaining vote..");
+    }
+
 }
